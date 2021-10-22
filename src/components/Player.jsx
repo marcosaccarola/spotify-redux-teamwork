@@ -22,7 +22,7 @@ const Player = ({currentSong}) => {
           </div>
           <div id="footerArtist" className="text-white">
 
-{currentSong ? (
+  {currentSong ? (
               <div className="footerSong ml-2 mt-1">
                 <p>{currentSong.title}</p>
                 <p className="card-text my-1 ml-2" id="footerArtist">
