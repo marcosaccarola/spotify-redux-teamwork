@@ -1,8 +1,13 @@
 import React from "react";
-import { Row } from "react-bootstrap";
+//import { Row } from "react-bootstrap";
 import '../components/Player.css'
+import { connect } from "react-redux";
 
-const Player = () => {
+const mapStateToProps=(state)=>({
+  currentSong:state.current.song
+})
+
+const Player = ({currentSong}) => {
   return (
     <div className="container-fluid playbar fixed-bottom">
       <div className="row">
@@ -16,14 +21,15 @@ const Player = () => {
             />
           </div>
           <div id="footerArtist" className="text-white">
-            {/* {currentSong ? (
+
+{currentSong ? (
               <div className="footerSong ml-2 mt-1">
                 <p>{currentSong.title}</p>
                 <p className="card-text my-1 ml-2" id="footerArtist">
                   {currentSong.artist.name}
                 </p>
               </div>
-            ) : ( */}
+            ) : (
               <>
                 <div className="footerSong ml-2 mt-1">
                   <p>Blond</p>
@@ -32,7 +38,8 @@ const Player = () => {
                   </p>
                 </div>
               </>
-            {/* )} */}
+
+            )} 
           </div>
           <div id="heart">
             <button id="footerButton">
@@ -216,4 +223,4 @@ const Player = () => {
   );
 };
 
-export default Player;
+export default connect(mapStateToProps)(Player);

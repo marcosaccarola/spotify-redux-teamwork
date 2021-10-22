@@ -4,7 +4,7 @@ import playlistReducer from '../reducers/playlist'
 
 export const initialState={
     current:{
-        song:{}
+        song:null
     },
     playlist:{
         tracks:[]
