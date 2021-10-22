@@ -8,7 +8,6 @@ const currentReducer=(state=initialState.current,action)=>{
                 song:action.payload
             }
         }
-    
         default:
             return state
     }

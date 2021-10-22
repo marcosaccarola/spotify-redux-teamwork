@@ -1,6 +1,17 @@
 import React from "react";
 import Song from "./Song";
 import { Row } from "react-bootstrap";
+import {connect} from 'react-redux'
+import { addSongToPlaylist, currentSong } from "../actions";
+
+const mapStateToProps=(state)=>({
+  currentSong:state.current.song
+})
+
+const mapDispatchToProps=(dispatch)=>({
+  addCurrentSong:(song)=>(dispatch(currentSong(song)))
+})
+
 
 class Album extends React.Component {
   state = {
@@ -76,7 +87,7 @@ class Album extends React.Component {
             <Row>
               <div className="col-md-10 mb-5" id="trackList">
                 {this.state.songs.map((song) => (
-                  <Song track={song} key={song.id} />
+                  <Song track={song} key={song.id} onClick={(song)=>console.log(song)}/>
                 ))}
               </div>
             </Row>
@@ -87,4 +98,4 @@ class Album extends React.Component {
   }
 }
 
-export default Album;
+export default connect(mapStateToProps,mapDispatchToProps)(Album);

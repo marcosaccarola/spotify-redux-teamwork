@@ -14,7 +14,6 @@ const playlistReducer=(state=initialState.playlist,action)=>{
                 tracks:state.tracks.filter((track,i)=>i!==action.payload)
             }
         }
-    
         default:
             return state
     }

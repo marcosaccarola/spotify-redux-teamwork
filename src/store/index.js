@@ -1,10 +1,10 @@
-import {createStore,configureStore, combineReducers} from 'redux'
+import {createStore, combineReducers} from 'redux'
 import currentReducer from '../reducers/current'
 import playlistReducer from '../reducers/playlist'
 
 export const initialState={
     current:{
-        song:null
+        song:{}
     },
     playlist:{
         tracks:[]
@@ -16,10 +16,9 @@ const bigReducer=combineReducers({
     playlist:playlistReducer
 })
 
-const configureStore=createStore(
+export const configureStore = createStore (
     bigReducer,
     initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__&&window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-export default configureStore
