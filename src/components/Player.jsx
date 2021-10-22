@@ -12,18 +12,22 @@ const Player = ({currentSong}) => {
     <div className="container-fluid playbar fixed-bottom">
       <div className="row">
         <div className="col-2 leftFooter d-none d-sm-none d-md-flex">
+  {currentSong ? ( 
           <div className="footerCover">
+           
             <img
-              src="https://www.sleek-mag.com/wp-content/uploads/2016/08/AlbumCovers_Blonde.jpg"
+              src={currentSong.artist.picture}
               alt=""
               className="img-fluid"
               id="footercover"
             />
-          </div>
+          </div>) : ("")}
           <div id="footerArtist" className="text-white">
 
   {currentSong ? (
+    
               <div className="footerSong ml-2 mt-1">
+                
                 <p>{currentSong.title}</p>
                 <p className="card-text my-1 ml-2" id="footerArtist">
                   {currentSong.artist.name}

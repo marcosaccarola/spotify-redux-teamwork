@@ -46,6 +46,7 @@ class Home extends React.Component {
       );
       let result = await response.json();
       let songInfo = result.data;
+      console.log("songs",songInfo)
       this.setState({
         [category]: [...this.state[category], songInfo[0]],
       });

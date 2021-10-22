@@ -1,38 +1,51 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { removeSongFromPlaylist } from '../actions'
+import { removeSongFromPlaylist, currentSong } from '../actions'
 import {IoTrash} from 'react-icons/io5'
-import {Button} from 'react-bootstrap'
+import {Button, Col, Container, Row} from 'react-bootstrap'
+import "./style/Playlist.css"
 
 const mapStateToProps=(state)=>({
-    playlist:state.playlist.tracks
+    playlist:state.playlist.tracks,
+    currentSong:state.current.song
   })
   
   const mapDispatchToProps=(dispatch)=>({
     removeFromPlaylist:(song)=>(dispatch(removeSongFromPlaylist(song))),
+    addCurrentSong:(song)=>(dispatch(currentSong(song)))
   })
 
-const Playlist = ({playlist,removeFromPlaylist}) => {
+const Playlist = ({playlist,removeFromPlaylist, addCurrentSong}) => {
+  
     return (
         <div>
+          <Row>
+            <Col>
+           <h2 className="h2Playlist">Favourite Playlist</h2>
+           </Col>
+           </Row>
             {playlist?(playlist.map((track,i)=>(
-                  <div className="py-3 trackHover">
-                  <span className="card-title trackHover px-3" style={{ color: "white" }}>
+                  <Container className="favouriteContainer mx-5" >
+  
+                  <div className="py-3 trackHoverCon ">
+                  <span className="card-title " style={{ color: "white" }} onClick={()=>addCurrentSong(track)}>
                     {track.title}
                   </span>
-                  <small className="duration" style={{ color: "white" }}>
+                
+                  <p className="duration" style={{ color: "white" }}>
                     {Math.floor(parseInt(track.duration) / 60)}:
                     {parseInt(track.duration) % 60 < 10
                       ? "0" + (parseInt(track.duration) % 60)
                       : parseInt(track.duration) % 60}
-                  </small>
-                  <Button style={{borderRadius: "50%", background: "transparent", border: 'none'}}>
-                    <IoTrash style={{fontSize:30}} onClick={()=>removeFromPlaylist(i)}/>
-                  </Button>
+                  </p>
+                
+                    <IoTrash className="IoTrash" onClick={()=>removeFromPlaylist(i)}/>
+                  
                 </div>
+                </Container>
             ))
             ):(
-                ''
+        ""
             )
 
             }
@@ -40,4 +53,4 @@ const Playlist = ({playlist,removeFromPlaylist}) => {
     )
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Playlist)
+export default connect(mapStateToProps,mapDispatchToProps)(Playlist);
