@@ -2,11 +2,6 @@ import React from "react";
 import Song from "./Song";
 import { Row } from "react-bootstrap";
 
-
-
-
-
-
 class Album extends React.Component {
   state = {
     album: {},
