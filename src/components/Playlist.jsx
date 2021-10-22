@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { removeSongFromPlaylist } from '../actions'
-import {IoMdHeartEmpty} from 'react-icons/io'
+import {IoTrash} from 'react-icons/io5'
 import {Button} from 'react-bootstrap'
 
 const mapStateToProps=(state)=>({
@@ -27,7 +27,7 @@ const Playlist = ({playlist,removeFromPlaylist}) => {
                       : parseInt(track.duration) % 60}
                   </small>
                   <Button style={{borderRadius: "50%", background: "transparent", border: 'none'}}>
-                    <IoMdHeartEmpty style={{fontSize:30}} onClick={()=>removeFromPlaylist(i)}/>
+                    <IoTrash style={{fontSize:30}} onClick={()=>removeFromPlaylist(i)}/>
                   </Button>
                 </div>
             ))
